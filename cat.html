@@ -1,32 +1,304 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
-  <title>猫の紹介</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>うちの猫 | ねこのおうち</title>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Kurenaido&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      background-color: #f5f5f5;
-      font-family: sans-serif;
-      max-width: 600px;
-      margin: 40px auto;
+    :root {
+      --cream: #fdf6ec;
+      --warm: #f5e6d0;
+      --brown: #8b6347;
+      --dark: #3d2b1f;
+      --accent: #c9763a;
+      --soft: #e8d5bc;
     }
-    h1 { color: #2c7be5; border-bottom: 2px solid #2c7be5; padding-bottom: 8px; }
-    h2 { color: #444; }
-    p { color: #555; line-height: 1.8; }
-    a { color: #2c7be5; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    nav { margin-bottom: 32px; }
-    nav a { margin-right: 16px; font-weight: bold; }
-    img { width: 100%; border-radius: 8px; }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: var(--cream);
+      font-family: 'Noto Serif JP', serif;
+      color: var(--dark);
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(circle, var(--soft) 2px, transparent 2px);
+      background-size: 40px 40px;
+      opacity: 0.4;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(253, 246, 236, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 2px solid var(--soft);
+      padding: 16px 40px;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    nav .logo {
+      font-family: 'Zen Kurenaido', sans-serif;
+      font-size: 1.4rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      text-decoration: none;
+    }
+
+    nav a {
+      color: var(--brown);
+      text-decoration: none;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      padding: 4px 0;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    nav a:hover, nav a.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .hero {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 60px 20px 40px;
+    }
+
+    .hero-icon {
+      font-size: 4rem;
+      margin-bottom: 16px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .hero h1 {
+      font-family: 'Zen Kurenaido', sans-serif;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      color: var(--brown);
+      font-size: 1rem;
+      letter-spacing: 0.06em;
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* メイン写真 */
+    .main-photo {
+      border-radius: 24px;
+      overflow: hidden;
+      margin-bottom: 28px;
+      box-shadow: 0 8px 40px rgba(139, 99, 71, 0.15);
+      border: 3px solid var(--soft);
+    }
+
+    .main-photo img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s;
+    }
+
+    .main-photo:hover img {
+      transform: scale(1.02);
+    }
+
+    /* プロフィールカード */
+    .profile-card {
+      background: white;
+      border-radius: 20px;
+      padding: 36px;
+      margin-bottom: 28px;
+      box-shadow: 0 4px 24px rgba(139, 99, 71, 0.08);
+      border: 1px solid var(--soft);
+    }
+
+    .profile-card h2 {
+      font-family: 'Zen Kurenaido', sans-serif;
+      font-size: 1.4rem;
+      color: var(--accent);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* プロフィール表 */
+    .profile-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .profile-table tr {
+      border-bottom: 1px solid var(--soft);
+    }
+
+    .profile-table tr:last-child {
+      border-bottom: none;
+    }
+
+    .profile-table th {
+      text-align: left;
+      padding: 12px 16px 12px 0;
+      color: var(--brown);
+      font-weight: normal;
+      font-size: 0.9rem;
+      width: 120px;
+      letter-spacing: 0.05em;
+    }
+
+    .profile-table td {
+      padding: 12px 0;
+      color: var(--dark);
+      font-size: 0.97rem;
+      line-height: 1.8;
+    }
+
+    /* 特技カード */
+    .traits {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .trait-item {
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      box-shadow: 0 4px 16px rgba(139, 99, 71, 0.07);
+      border: 1px solid var(--soft);
+      transition: transform 0.2s;
+    }
+
+    .trait-item:hover {
+      transform: translateY(-3px);
+    }
+
+    .trait-item .emoji {
+      font-size: 2.2rem;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .trait-item p {
+      color: var(--brown);
+      font-size: 0.88rem;
+      letter-spacing: 0.05em;
+    }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 32px;
+      color: var(--brown);
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      border-top: 1px solid var(--soft);
+    }
   </style>
 </head>
 <body>
+
   <nav>
+    <a href="index.html" class="logo">🐾 ねこのおうち</a>
     <a href="index.html">トップ</a>
-    <a href="cat.html">猫の紹介</a>
+    <a href="cat.html" class="active">うちの猫</a>
   </nav>
 
-  <h1>猫の紹介</h1>
-  <img src="test1.jpg" alt="うちの猫">
-  <p>うちの猫です。いつもこんな顔をしています。🐱</p>
+  <div class="hero">
+    <div class="hero-icon">😺</div>
+    <h1>うちの猫</h1>
+    <p>我が家の大切な家族を紹介します。</p>
+  </div>
+
+  <main>
+
+    <div class="main-photo">
+      <img src="test1.jpg" alt="うちの猫">
+    </div>
+
+    <div class="profile-card">
+      <h2>🐾 プロフィール</h2>
+      <table class="profile-table">
+        <tr>
+          <th>なまえ</th>
+          <td>（ここに名前を入れてね）</td>
+        </tr>
+        <tr>
+          <th>種類</th>
+          <td>キジトラ</td>
+        </tr>
+        <tr>
+          <th>性格</th>
+          <td>気まぐれだけど、甘えたがり</td>
+        </tr>
+        <tr>
+          <th>好きなこと</th>
+          <td>窓の外を眺めること、日向ぼっこ</td>
+        </tr>
+        <tr>
+          <th>ひとこと</th>
+          <td>いつもこちらをじっと見てきます。何か言いたいのかも。</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="traits">
+      <div class="trait-item">
+        <span class="emoji">😴</span>
+        <p>よく寝る</p>
+      </div>
+      <div class="trait-item">
+        <span class="emoji">🪟</span>
+        <p>窓が好き</p>
+      </div>
+      <div class="trait-item">
+        <span class="emoji">🐟</span>
+        <p>食いしん坊</p>
+      </div>
+      <div class="trait-item">
+        <span class="emoji">🧶</span>
+        <p>遊び好き</p>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>🐾 ねこのおうち &copy; 2026</p>
+  </footer>
+
 </body>
 </html>

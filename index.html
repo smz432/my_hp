@@ -1,44 +1,248 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
-  <title>私のHP</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ねこのおうち</title>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Kurenaido&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      background-color: #f5f5f5;
-      font-family: sans-serif;
-      max-width: 600px;
-      margin: 40px auto;
+    :root {
+      --cream: #fdf6ec;
+      --warm: #f5e6d0;
+      --brown: #8b6347;
+      --dark: #3d2b1f;
+      --accent: #c9763a;
+      --soft: #e8d5bc;
     }
-    h1 { color: #2c7be5; border-bottom: 2px solid #2c7be5; padding-bottom: 8px; }
-    h2 { color: #444; }
-    p { color: #555; line-height: 1.8; }
-    a {
-      color: #2c7be5;
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: var(--cream);
+      font-family: 'Noto Serif JP', serif;
+      color: var(--dark);
+      min-height: 100vh;
+    }
+
+    /* 背景の肉球パターン */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(circle, var(--soft) 2px, transparent 2px);
+      background-size: 40px 40px;
+      opacity: 0.4;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ナビゲーション */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(253, 246, 236, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 2px solid var(--soft);
+      padding: 16px 40px;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    nav .logo {
+      font-family: 'Zen Kurenaido', sans-serif;
+      font-size: 1.4rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
       text-decoration: none;
     }
-    a:hover {
-      text-decoration: underline;
-    }
-    nav {
-      margin-bottom: 32px;
-    }
+
     nav a {
-      margin-right: 16px;
-      font-weight: bold;
+      color: var(--brown);
+      text-decoration: none;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      padding: 4px 0;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    nav a:hover, nav a.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    /* ヒーローセクション */
+    .hero {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 80px 20px 60px;
+    }
+
+    .hero-icon {
+      font-size: 5rem;
+      line-height: 1;
+      margin-bottom: 20px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .hero h1 {
+      font-family: 'Zen Kurenaido', sans-serif;
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      color: var(--brown);
+      font-size: 1.05rem;
+      letter-spacing: 0.06em;
+    }
+
+    /* メインコンテンツ */
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* カード */
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 36px;
+      margin-bottom: 28px;
+      box-shadow: 0 4px 24px rgba(139, 99, 71, 0.08);
+      border: 1px solid var(--soft);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(139, 99, 71, 0.14);
+    }
+
+    .card h2 {
+      font-family: 'Zen Kurenaido', sans-serif;
+      font-size: 1.4rem;
+      color: var(--accent);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card p {
+      line-height: 2;
+      color: var(--dark);
+      font-size: 0.97rem;
+    }
+
+    /* 猫の写真カード */
+    .photo-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 28px;
+      box-shadow: 0 4px 24px rgba(139, 99, 71, 0.08);
+      border: 1px solid var(--soft);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .photo-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(139, 99, 71, 0.14);
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .photo-card .caption {
+      padding: 20px 28px;
+    }
+
+    .photo-card .caption h2 {
+      font-family: 'Zen Kurenaido', sans-serif;
+      font-size: 1.3rem;
+      color: var(--accent);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .photo-card .caption p {
+      color: var(--brown);
+      line-height: 1.8;
+      font-size: 0.95rem;
+    }
+
+    /* フッター */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 32px;
+      color: var(--brown);
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      border-top: 1px solid var(--soft);
     }
   </style>
 </head>
 <body>
+
   <nav>
-    <a href="index.html">トップ</a>
-    <a href="cat.html">猫の紹介</a>
+    <a href="index.html" class="logo">🐾 ねこのおうち</a>
+    <a href="index.html" class="active">トップ</a>
+    <a href="cat.html">うちの猫</a>
   </nav>
 
-  <h1>私のホームページ</h1>
-  <h2>自己紹介</h2>
-  <p>東京に住んでいます。趣味はまだ秘密です。</p>
+  <div class="hero">
+    <div class="hero-icon">🐱</div>
+    <h1>ねこのおうち</h1>
+    <p>猫と暮らす、のんびりな毎日。</p>
+  </div>
 
-  <h2>好きなもの</h2>
-  <p>コーヒー、音楽、散歩。</p>
+  <main>
+    <div class="photo-card">
+      <img src="test1.jpg" alt="うちの猫">
+      <div class="caption">
+        <h2>🐾 今日のにゃんこ</h2>
+        <p>いつもこんな顔でこちらを見ています。何を考えているのか、ちょっと気になる。</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>🏠 このサイトについて</h2>
+      <p>猫と一緒に暮らしています。日々のかわいい瞬間や、猫のことを少しずつ紹介していきます。どうぞごゆっくり。</p>
+    </div>
+
+    <div class="card">
+      <h2>📋 メニュー</h2>
+      <p>
+        <a href="cat.html" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent);">うちの猫を見る →</a>
+      </p>
+    </div>
+  </main>
+
+  <footer>
+    <p>🐾 ねこのおうち &copy; 2026</p>
+  </footer>
+
 </body>
 </html>
