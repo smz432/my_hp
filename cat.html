@@ -300,5 +300,45 @@
     <p>🐾 ねこのおうち &copy; 2026</p>
   </footer>
 
+<script>
+  // カードをふわっと表示する
+  const cards = document.querySelectorAll('.profile-card, .main-photo, .trait-item');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }, i * 150);
+      }
+    });
+  });
+
+  cards.forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(24px)';
+    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(card);
+  });
+
+  // 写真クリックで拡大表示（ライトボックス）
+  const img = document.querySelector('.main-photo img');
+  const lightbox = document.createElement('div');
+  lightbox.style.cssText = `
+    display: none; position: fixed; inset: 0; z-index: 999;
+    background: rgba(0,0,0,0.85); cursor: pointer;
+    align-items: center; justify-content: center;
+  `;
+  lightbox.innerHTML = `<img src="${img.src}" style="max-width:90vw; max-height:90vh; border-radius:16px; box-shadow:0 8px 40px rgba(0,0,0,0.5);">`;
+  document.body.appendChild(lightbox);
+
+  img.style.cursor = 'zoom-in';
+  img.addEventListener('click', () => {
+    lightbox.style.display = 'flex';
+  });
+  lightbox.addEventListener('click', () => {
+    lightbox.style.display = 'none';
+  });
+</script>
 </body>
 </html>

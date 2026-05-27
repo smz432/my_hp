@@ -244,5 +244,26 @@
     <p>🐾 ねこのおうち &copy; 2026</p>
   </footer>
 
+<script>
+  // ページを開いたとき、カードをふわっと表示する
+  const cards = document.querySelectorAll('.card, .photo-card');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }, i * 150);
+      }
+    });
+  });
+
+  cards.forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(24px)';
+    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(card);
+  });
+</script>
 </body>
 </html>
