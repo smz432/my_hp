@@ -8,23 +8,18 @@
   <style>
     :root {
       --cream: #fdf6ec;
-      --warm: #f5e6d0;
       --brown: #8b6347;
       --dark: #3d2b1f;
       --accent: #c9763a;
       --soft: #e8d5bc;
     }
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     body {
       background-color: var(--cream);
       font-family: 'Noto Serif JP', serif;
       color: var(--dark);
       min-height: 100vh;
     }
-
-    /* 背景の肉球パターン */
     body::before {
       content: '';
       position: fixed;
@@ -36,167 +31,178 @@
       z-index: 0;
     }
 
-    /* ナビゲーション */
+    /* ナビ */
     nav {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(253, 246, 236, 0.92);
+      background: rgba(253,246,236,0.95);
       backdrop-filter: blur(8px);
       border-bottom: 2px solid var(--soft);
-      padding: 16px 40px;
+      padding: 14px 24px;
       display: flex;
       align-items: center;
-      gap: 32px;
+      gap: 24px;
+      flex-wrap: wrap;
     }
-
     nav .logo {
       font-family: 'Zen Kurenaido', sans-serif;
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       color: var(--accent);
-      letter-spacing: 0.05em;
       text-decoration: none;
+      letter-spacing: 0.05em;
+      margin-right: auto;
     }
-
-    nav a {
+    nav a:not(.logo) {
       color: var(--brown);
       text-decoration: none;
-      font-size: 0.95rem;
-      letter-spacing: 0.08em;
+      font-size: 0.9rem;
+      letter-spacing: 0.06em;
       padding: 4px 0;
       border-bottom: 2px solid transparent;
       transition: border-color 0.2s, color 0.2s;
+      white-space: nowrap;
     }
-
-    nav a:hover, nav a.active {
+    nav a:not(.logo):hover, nav a.active {
       color: var(--accent);
       border-bottom-color: var(--accent);
     }
 
-    /* ヒーローセクション */
+    /* ヒーロー */
     .hero {
       position: relative;
       z-index: 1;
       text-align: center;
-      padding: 80px 20px 60px;
+      padding: 60px 20px 40px;
     }
-
     .hero-icon {
-      font-size: 5rem;
-      line-height: 1;
-      margin-bottom: 20px;
+      font-size: 4rem;
+      margin-bottom: 16px;
       animation: float 3s ease-in-out infinite;
+      display: block;
     }
-
     @keyframes float {
-      0%, 100% { transform: translateY(0); }
+      0%,100% { transform: translateY(0); }
       50% { transform: translateY(-12px); }
     }
-
     .hero h1 {
       font-family: 'Zen Kurenaido', sans-serif;
       font-size: clamp(2rem, 6vw, 3.5rem);
       color: var(--accent);
       letter-spacing: 0.1em;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
-
     .hero p {
       color: var(--brown);
-      font-size: 1.05rem;
+      font-size: 1rem;
       letter-spacing: 0.06em;
     }
 
-    /* メインコンテンツ */
+    /* メイン */
     main {
       position: relative;
       z-index: 1;
-      max-width: 720px;
+      max-width: 800px;
       margin: 0 auto;
-      padding: 0 24px 80px;
+      padding: 0 20px 80px;
     }
 
-    /* カード */
-    .card {
+    /* 紹介カード */
+    .intro-card {
       background: white;
       border-radius: 20px;
-      padding: 36px;
-      margin-bottom: 28px;
-      box-shadow: 0 4px 24px rgba(139, 99, 71, 0.08);
+      padding: 32px;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 24px rgba(139,99,71,0.08);
       border: 1px solid var(--soft);
-      transition: transform 0.2s, box-shadow 0.2s;
+      text-align: center;
+    }
+    .intro-card p {
+      line-height: 2;
+      color: var(--brown);
+      font-size: 0.97rem;
+    }
+    .cat-count {
+      font-family: 'Zen Kurenaido', sans-serif;
+      font-size: 2rem;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 8px;
     }
 
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 32px rgba(139, 99, 71, 0.14);
-    }
-
-    .card h2 {
+    /* 猫グリッド */
+    .section-title {
       font-family: 'Zen Kurenaido', sans-serif;
       font-size: 1.4rem;
       color: var(--accent);
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .card p {
-      line-height: 2;
-      color: var(--dark);
-      font-size: 0.97rem;
-    }
-
-    /* 猫の写真カード */
-    .photo-card {
-      background: white;
-      border-radius: 20px;
-      overflow: hidden;
-      margin-bottom: 28px;
-      box-shadow: 0 4px 24px rgba(139, 99, 71, 0.08);
-      border: 1px solid var(--soft);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .photo-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 32px rgba(139, 99, 71, 0.14);
-    }
-
-    .photo-card img {
-      width: 100%;
-      height: 300px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .photo-card .caption {
-      padding: 20px 28px;
-    }
-
-    .photo-card .caption h2 {
-      font-family: 'Zen Kurenaido', sans-serif;
-      font-size: 1.3rem;
-      color: var(--accent);
-      margin-bottom: 8px;
+      margin-bottom: 20px;
       display: flex;
       align-items: center;
       gap: 8px;
     }
-
-    .photo-card .caption p {
-      color: var(--brown);
-      line-height: 1.8;
-      font-size: 0.95rem;
+    .cats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    @media (max-width: 600px) {
+      .cats-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    }
+    @media (max-width: 380px) {
+      .cats-grid { grid-template-columns: 1fr; }
     }
 
-    /* フッター */
+    .cat-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(139,99,71,0.08);
+      border: 1px solid var(--soft);
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .cat-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 28px rgba(139,99,71,0.15);
+    }
+    .cat-card .photo {
+      width: 100%;
+      aspect-ratio: 1;
+      background: var(--soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      overflow: hidden;
+    }
+    .cat-card .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .cat-card .info {
+      padding: 14px 16px;
+    }
+    .cat-card .name {
+      font-family: 'Zen Kurenaido', sans-serif;
+      font-size: 1.1rem;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .cat-card .breed {
+      font-size: 0.82rem;
+      color: var(--brown);
+      letter-spacing: 0.04em;
+    }
+
     footer {
       position: relative;
       z-index: 1;
       text-align: center;
-      padding: 32px;
+      padding: 28px;
       color: var(--brown);
       font-size: 0.85rem;
       letter-spacing: 0.06em;
@@ -209,35 +215,60 @@
   <nav>
     <a href="index.html" class="logo">🐾 ねこのおうち</a>
     <a href="index.html" class="active">トップ</a>
-    <a href="cat.html">うちの猫</a>
+    <a href="cats.html">うちの猫たち</a>
     <a href="contact.html">お問い合わせ</a>
   </nav>
 
   <div class="hero">
-    <div class="hero-icon">🐱</div>
+    <span class="hero-icon">🐱</span>
     <h1>ねこのおうち</h1>
-    <p>猫と暮らす、のんびりな毎日。</p>
+    <p>猫たちと暮らす、のんびりな毎日。</p>
   </div>
 
   <main>
-    <div class="photo-card">
-      <img src="test1.jpg" alt="うちの猫">
-      <div class="caption">
-        <h2>🐾 今日のにゃんこ</h2>
-        <p>いつもこんな顔でこちらを見ています。何を考えているのか、ちょっと気になる。</p>
-      </div>
+    <div class="intro-card">
+      <span class="cat-count">🐾 9匹の猫と暮らしています</span>
+      <p>キキ、ミミ、さくら、ミー、モモ、ルナ、パティー、リンリン、ランラン。<br>みんな個性豊かな大切な家族です。</p>
     </div>
 
-    <div class="card">
-      <h2>🏠 このサイトについて</h2>
-      <p>猫と一緒に暮らしています。日々のかわいい瞬間や、猫のことを少しずつ紹介していきます。どうぞごゆっくり。</p>
-    </div>
-
-    <div class="card">
-      <h2>📋 メニュー</h2>
-      <p>
-        <a href="cat.html" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent);">うちの猫を見る →</a>
-      </p>
+    <div class="section-title">😺 うちの猫たち</div>
+    <div class="cats-grid">
+      <a href="cats.html#kiki" class="cat-card">
+        <div class="photo">🐱</div>
+        <div class="info"><div class="name">キキ</div><div class="breed">キジトラ</div></div>
+      </a>
+      <a href="cats.html#mimi" class="cat-card">
+        <div class="photo">🐱</div>
+        <div class="info"><div class="name">ミミ</div><div class="breed">キジトラ</div></div>
+      </a>
+      <a href="cats.html#sakura" class="cat-card">
+        <div class="photo">🐱</div>
+        <div class="info"><div class="name">さくら</div><div class="breed">茶白</div></div>
+      </a>
+      <a href="cats.html#mii" class="cat-card">
+        <div class="photo">🐱</div>
+        <div class="info"><div class="name">ミー</div><div class="breed">三毛</div></div>
+      </a>
+      <a href="cats.html#momo" class="cat-card">
+        <div class="photo">🐱</div>
+        <div class="info"><div class="name">モモ</div><div class="breed">キジトラ</div></div>
+      </a>
+      <a href="cats.html#luna" class="cat-card">
+        <div class="photo">🐱</div>
+        <div class="info"><div class="name">ルナ</div><div class="breed">黒</div></div>
+      </a>
+      <a href="cats.html#patty" class="cat-card">
+        <div class="photo">🐱</div>
+        <div class="info"><div class="name">パティー</div><div class="breed">キジトラ</div></div>
+      </a>
+      <a href="cats.html#rinrin" class="cat-card">
+        <div class="photo">🐱</div>
+        <div class="info"><div class="name">リンリン</div><div class="breed">黒白</div></div>
+      </a>
+      <a href="cats.html#ranran" class="cat-card">
+        <div class="photo">🐱</div>
+        <div class="info"><div class="name">ランラン</div><div class="breed">黒白</div></div>
+      </a>
     </div>
   </main>
 
@@ -245,26 +276,25 @@
     <p>🐾 ねこのおうち &copy; 2026</p>
   </footer>
 
-<script>
-  // ページを開いたとき、カードをふわっと表示する
-  const cards = document.querySelectorAll('.card, .photo-card');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-        }, i * 150);
-      }
+  <script>
+    const items = document.querySelectorAll('.cat-card, .intro-card');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }, i * 80);
+        }
+      });
     });
-  });
+    items.forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      observer.observe(el);
+    });
+  </script>
 
-  cards.forEach(card => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(24px)';
-    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    observer.observe(card);
-  });
-</script>
 </body>
 </html>

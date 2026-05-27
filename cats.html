@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>うちの猫たち | ねこのおうち</title>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Kurenaido&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #fdf6ec;
+      --brown: #8b6347;
+      --dark: #3d2b1f;
+      --accent: #c9763a;
+      --soft: #e8d5bc;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background-color: var(--cream);
+      font-family: 'Noto Serif JP', serif;
+      color: var(--dark);
+      min-height: 100vh;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(circle, var(--soft) 2px, transparent 2px);
+      background-size: 40px 40px;
+      opacity: 0.4;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(253,246,236,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 2px solid var(--soft);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    nav .logo {
+      font-family: 'Zen Kurenaido', sans-serif;
+      font-size: 1.3rem;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      margin-right: auto;
+    }
+    nav a:not(.logo) {
+      color: var(--brown);
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 0.06em;
+      padding: 4px 0;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+    nav a:not(.logo):hover, nav a.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .hero {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 50px 20px 32px;
+    }
+    .hero-icon {
+      font-size: 3.5rem;
+      margin-bottom: 12px;
+      animation: float 3s ease-in-out infinite;
+      display: block;
+    }
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .hero h1 {
+      font-family: 'Zen Kurenaido', sans-serif;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+    .hero p { color: var(--brown); font-size: 0.97rem; }
+
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px 80px;
+    }
+
+    /* 各猫のカード */
+    .cat-profile {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 28px;
+      box-shadow: 0 4px 24px rgba(139,99,71,0.08);
+      border: 1px solid var(--soft);
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .cat-profile:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(139,99,71,0.13);
+    }
+    @media (max-width: 560px) {
+      .cat-profile { grid-template-columns: 1fr; }
+    }
+
+    .cat-photo {
+      background: var(--soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      min-height: 180px;
+      overflow: hidden;
+    }
+    .cat-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .cat-info {
+      padding: 28px;
+    }
+    .cat-info h2 {
+      font-family: 'Zen Kurenaido', sans-serif;
+      font-size: 1.5rem;
+      color: var(--accent);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .cat-info .breed-tag {
+      display: inline-block;
+      background: var(--soft);
+      color: var(--brown);
+      font-size: 0.78rem;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+      letter-spacing: 0.05em;
+    }
+    .profile-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .profile-table tr {
+      border-bottom: 1px solid var(--soft);
+    }
+    .profile-table tr:last-child { border-bottom: none; }
+    .profile-table th {
+      text-align: left;
+      padding: 9px 12px 9px 0;
+      color: var(--brown);
+      font-weight: normal;
+      font-size: 0.82rem;
+      width: 90px;
+      letter-spacing: 0.04em;
+    }
+    .profile-table td {
+      padding: 9px 0;
+      color: var(--dark);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+    .placeholder {
+      color: #ccc;
+      font-style: italic;
+    }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 28px;
+      color: var(--brown);
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      border-top: 1px solid var(--soft);
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">🐾 ねこのおうち</a>
+    <a href="index.html">トップ</a>
+    <a href="cats.html" class="active">うちの猫たち</a>
+    <a href="contact.html">お問い合わせ</a>
+  </nav>
+
+  <div class="hero">
+    <span class="hero-icon">😸</span>
+    <h1>うちの猫たち</h1>
+    <p>9匹の個性豊かな家族を紹介します。</p>
+  </div>
+
+  <main>
+
+    <!-- キキ -->
+    <div class="cat-profile" id="kiki">
+      <div class="cat-photo">🐱</div>
+      <div class="cat-info">
+        <h2>キキ</h2>
+        <span class="breed-tag">キジトラ</span>
+        <table class="profile-table">
+          <tr><th>性格</th><td class="placeholder">（準備中）</td></tr>
+          <tr><th>好きなこと</th><td class="placeholder">（準備中）</td></tr>
+          <tr><th>ひとこと</th><td class="placeholder">（準備中）</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- ミミ -->
+    <div class="cat-profile" id="mimi">
+      <div class="cat-photo">🐱</div>
+      <div class="cat-info">
+        <h2>ミミ</h2>
+        <span class="breed-tag">キジトラ</span>
+        <table class="profile-table">
+          <tr><th>性格</th><td class="placeholder">（準備中）</td></tr>
+          <tr><th>好きなこと</th><td class="placeholder">（準備中）</td></tr>
+          <tr><th>ひとこと</th><td class="placeholder">（準備中）</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- さくら -->
+    <div class="cat-profile" id="sakura">
+      <div class="cat-photo">🐱</div>
+      <div class="cat-info">
+        <h2>さくら</h2>
+        <span class="breed-tag">茶白</span>
+        <table class="profile-table">
+          <tr><th>性格</th><td class="placeholder">（準備中）</td></tr>
+          <tr><th>好きなこと</th><td class="placeholder">（準備中）</td></tr>
+          <tr><th>ひとこと</th><td class="placeholder">（準備中）</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- ミー -->
+    <div class="cat-profile" id="mii">
+      <div class="cat-photo">🐱</div>
+      <div class="cat-info">
+        <h2>ミー</h2>
+        <span class="breed-tag">三毛</span>
+        <table class="profile-table">
+          <tr><th>性格</th><td class="placeholder">（準備中）</td></tr>
+          <tr><th>好きなこと</th><td class="placeholder">（準備中）</td></tr>
+          <tr><th>ひとこと</th><td class="placeholder">（準備中）</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- モモ -->
+    <div class="cat-profile" id="momo">
+      <div class="cat-photo">🐱</div>
+      <div class="cat-info">
+        <h2>モモ</h2>
+        <span class="breed-tag">キジトラ</span>
+        <table class="profile-table">
+          <tr><th>性格</th><td class="placeholder">（準備中）</td></tr>
+          <tr><th>好きなこと</th><td class="placeholder">（準備中）</td></tr>
+          <tr><th>ひとこと</th><td class="placeholder">（準備中）</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- ルナ -->
+    <div class="cat-profile" id="luna">
+      <div class="cat-photo">🐱</div>
+      <div class="cat-info">
+        <h2>ルナ</h2>
+        <span class="breed-tag">黒</span>
+        <table class="profile-table">
+          <tr><th>性格</th><td class="placeholder">（準備中）</td></tr>
+          <tr><th>好きなこと</th><td class="placeholder">（準備中）</td></tr>
+          <tr><th>ひとこと</th><td class="placeholder">（準備中）</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- パティー -->
+    <div class="cat-profile" id="patty">
+      <div class="cat-photo">🐱</div>
+      <div class="cat-info">
+        <h2>パティー</h2>
+        <span class="breed-tag">キジトラ</span>
+        <table class="profile-table">
+          <tr><th>性格</th><td class="placeholder">（準備中）</td></tr>
+          <tr><th>好きなこと</th><td class="placeholder">（準備中）</td></tr>
+          <tr><th>ひとこと</th><td class="placeholder">（準備中）</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- リンリン -->
+    <div class="cat-profile" id="rinrin">
+      <div class="cat-photo">🐱</div>
+      <div class="cat-info">
+        <h2>リンリン</h2>
+        <span class="breed-tag">黒白</span>
+        <table class="profile-table">
+          <tr><th>性格</th><td class="placeholder">（準備中）</td></tr>
+          <tr><th>好きなこと</th><td class="placeholder">（準備中）</td></tr>
+          <tr><th>ひとこと</th><td class="placeholder">（準備中）</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- ランラン -->
+    <div class="cat-profile" id="ranran">
+      <div class="cat-photo">🐱</div>
+      <div class="cat-info">
+        <h2>ランラン</h2>
+        <span class="breed-tag">黒白</span>
+        <table class="profile-table">
+          <tr><th>性格</th><td class="placeholder">（準備中）</td></tr>
+          <tr><th>好きなこと</th><td class="placeholder">（準備中）</td></tr>
+          <tr><th>ひとこと</th><td class="placeholder">（準備中）</td></tr>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>🐾 ねこのおうち &copy; 2026</p>
+  </footer>
+
+  <script>
+    const cards = document.querySelectorAll('.cat-profile');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }, i * 100);
+        }
+      });
+    });
+    cards.forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(24px)';
+      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>
