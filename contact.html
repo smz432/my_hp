@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お問い合わせ | ねこのおうち</title>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Kurenaido&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #fdf6ec;
+      --warm: #f5e6d0;
+      --brown: #8b6347;
+      --dark: #3d2b1f;
+      --accent: #c9763a;
+      --soft: #e8d5bc;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: var(--cream);
+      font-family: 'Noto Serif JP', serif;
+      color: var(--dark);
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(circle, var(--soft) 2px, transparent 2px);
+      background-size: 40px 40px;
+      opacity: 0.4;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(253, 246, 236, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 2px solid var(--soft);
+      padding: 16px 40px;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    nav .logo {
+      font-family: 'Zen Kurenaido', sans-serif;
+      font-size: 1.4rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      text-decoration: none;
+    }
+
+    nav a {
+      color: var(--brown);
+      text-decoration: none;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      padding: 4px 0;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    nav a:hover, nav a.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .hero {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 60px 20px 40px;
+    }
+
+    .hero-icon {
+      font-size: 4rem;
+      margin-bottom: 16px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .hero h1 {
+      font-family: 'Zen Kurenaido', sans-serif;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      color: var(--brown);
+      font-size: 1rem;
+      letter-spacing: 0.06em;
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    .form-card {
+      background: white;
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: 0 4px 24px rgba(139, 99, 71, 0.08);
+      border: 1px solid var(--soft);
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.9rem;
+      color: var(--brown);
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+    }
+
+    label span {
+      color: var(--accent);
+      margin-left: 4px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid var(--soft);
+      border-radius: 12px;
+      font-family: 'Noto Serif JP', serif;
+      font-size: 0.95rem;
+      color: var(--dark);
+      background: var(--cream);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(201, 118, 58, 0.12);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 140px;
+      line-height: 1.8;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 16px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-family: 'Zen Kurenaido', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .submit-btn:hover {
+      background: var(--brown);
+      transform: translateY(-2px);
+    }
+
+    .submit-btn:active {
+      transform: translateY(0);
+    }
+
+    /* 送信完了メッセージ */
+    .success-msg {
+      display: none;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .success-msg .icon {
+      font-size: 4rem;
+      margin-bottom: 16px;
+    }
+
+    .success-msg h2 {
+      font-family: 'Zen Kurenaido', sans-serif;
+      color: var(--accent);
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+    }
+
+    .success-msg p {
+      color: var(--brown);
+      line-height: 1.8;
+    }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 32px;
+      color: var(--brown);
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      border-top: 1px solid var(--soft);
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">🐾 ねこのおうち</a>
+    <a href="index.html">トップ</a>
+    <a href="cat.html">うちの猫</a>
+    <a href="contact.html" class="active">お問い合わせ</a>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-icon">📬</div>
+    <h1>お問い合わせ</h1>
+    <p>お気軽にメッセージをどうぞ。</p>
+  </div>
+
+  <main>
+    <div class="form-card">
+
+      <!-- フォーム -->
+      <form id="contact-form" action="https://formspree.io/f/mdajprav" method="POST">
+        <div class="form-group">
+          <label>お名前<span>*</span></label>
+          <input type="text" name="name" placeholder="例：田中 太郎" required>
+        </div>
+        <div class="form-group">
+          <label>メールアドレス<span>*</span></label>
+          <input type="email" name="email" placeholder="例：example@email.com" required>
+        </div>
+        <div class="form-group">
+          <label>メッセージ<span>*</span></label>
+          <textarea name="message" placeholder="猫のことでも、なんでもお気軽に…🐱" required></textarea>
+        </div>
+        <button type="submit" class="submit-btn">🐾 送信する</button>
+      </form>
+
+      <!-- 送信完了メッセージ -->
+      <div class="success-msg" id="success-msg">
+        <div class="icon">😸</div>
+        <h2>送信できました！</h2>
+        <p>メッセージありがとうございます。<br>またいつでも遊びにきてください 🐾</p>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>🐾 ねこのおうち &copy; 2026</p>
+  </footer>
+
+  <script>
+    // フォーム送信後に完了メッセージを表示
+    const form = document.getElementById('contact-form');
+    const successMsg = document.getElementById('success-msg');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (response.ok) {
+        form.style.display = 'none';
+        successMsg.style.display = 'block';
+      } else {
+        alert('送信に失敗しました。もう一度お試しください。');
+      }
+    });
+
+    // ふわっと登場アニメーション
+    const card = document.querySelector('.form-card');
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(24px)';
+    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    setTimeout(() => {
+      card.style.opacity = '1';
+      card.style.transform = 'translateY(0)';
+    }, 100);
+  </script>
+
+</body>
+</html>
