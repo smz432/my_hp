@@ -31,28 +31,26 @@
       z-index: 0;
     }
     nav {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(253,246,236,0.95);
-  backdrop-filter: blur(8px);
-  border-bottom: 2px solid var(--soft);
-  padding: 12px 16px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-}
-   nav .logo {
-  font-family: 'Zen Kurenaido', sans-serif;
-  font-size: 1.5rem;
-  color: var(--accent);
-  text-decoration: none;
-  letter-spacing: 0.05em;
-  margin-right: auto;
-  flex-shrink: 0;
-}
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(253,246,236,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 2px solid var(--soft);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+    }
+    nav .logo {
+      font-family: 'Zen Kurenaido', sans-serif;
+      font-size: 1.5rem;
+      color: var(--accent);
+      text-decoration: none;
+      margin-right: auto;
+      flex-shrink: 0;
     }
     nav a:not(.logo) {
       color: var(--brown);
@@ -63,6 +61,7 @@
       border-bottom: 2px solid transparent;
       transition: border-color 0.2s, color 0.2s;
       white-space: nowrap;
+      flex-shrink: 0;
     }
     nav a:not(.logo):hover, nav a.active {
       color: var(--accent);
@@ -109,19 +108,17 @@
       text-align: center;
     }
     .cat-count {
-  font-family: 'Zen Kurenaido', sans-serif;
-  font-size: clamp(1.1rem, 4vw, 1.8rem);
-  color: var(--accent);
-  display: block;
-  margin-bottom: 12px;
-}
+      font-family: 'Zen Kurenaido', sans-serif;
+      font-size: clamp(1.1rem, 4vw, 1.8rem);
+      color: var(--accent);
+      display: block;
+      margin-bottom: 12px;
+    }
     .intro-card p {
       line-height: 2;
       color: var(--brown);
       font-size: 0.95rem;
     }
-
-    /* 保護猫バナー */
     .rescue-banner {
       background: linear-gradient(135deg, #fff8f0, #fdecd8);
       border: 2px solid var(--soft);
@@ -133,18 +130,8 @@
       gap: 16px;
     }
     .rescue-banner .icon { font-size: 2.4rem; flex-shrink: 0; }
-    .rescue-banner p {
-      color: var(--brown);
-      font-size: 0.93rem;
-      line-height: 1.9;
-    }
-    .rescue-banner strong {
-      color: var(--accent);
-      font-size: 1rem;
-      display: block;
-      margin-bottom: 4px;
-    }
-
+    .rescue-banner p { color: var(--brown); font-size: 0.93rem; line-height: 1.9; }
+    .rescue-banner strong { color: var(--accent); font-size: 1rem; display: block; margin-bottom: 4px; }
     .section-title {
       font-family: 'Zen Kurenaido', sans-serif;
       font-size: 1.4rem;
@@ -178,10 +165,7 @@
       display: block;
       transition: transform 0.2s, box-shadow 0.2s;
     }
-    .cat-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 28px rgba(139,99,71,0.15);
-    }
+    .cat-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(139,99,71,0.15); }
     .cat-card .photo {
       width: 100%;
       aspect-ratio: 1;
@@ -194,16 +178,8 @@
     }
     .cat-card .photo img { width: 100%; height: 100%; object-fit: cover; }
     .cat-card .info { padding: 12px 14px; }
-    .cat-card .name {
-      font-family: 'Zen Kurenaido', sans-serif;
-      font-size: 1.05rem;
-      color: var(--accent);
-      margin-bottom: 2px;
-    }
-    .cat-card .breed {
-      font-size: 0.78rem;
-      color: var(--brown);
-    }
+    .cat-card .name { font-family: 'Zen Kurenaido', sans-serif; font-size: 1.05rem; color: var(--accent); margin-bottom: 2px; }
+    .cat-card .breed { font-size: 0.78rem; color: var(--brown); }
     footer {
       position: relative;
       z-index: 1;
@@ -217,26 +193,22 @@
   </style>
 </head>
 <body>
-
   <nav>
     <a href="index.html" class="logo">🐾</a>
     <a href="index.html" class="active">トップ</a>
     <a href="cats.html">うちの猫たち</a>
     <a href="contact.html">お問い合わせ</a>
   </nav>
-
   <div class="hero">
     <span class="hero-icon">🐱</span>
     <h1>ねこのおうち</h1>
     <p>保護猫たちと暮らす、のんびりな毎日。</p>
   </div>
-
   <main>
     <div class="intro-card">
       <span class="cat-count">🐾 9匹の保護猫と暮らしています</span>
       <p>キキ、ミミ、さくら、ミー、モモ、ルナ、パティー、リンリン、ランラン。<br>みんな保護猫、みんな大切な家族です。</p>
     </div>
-
     <div class="rescue-banner">
       <span class="icon">🏠</span>
       <p>
@@ -244,52 +216,20 @@
         さまざまな事情で保護されたこの子たちが、今は元気に暮らしています。ミーちゃんを始まりに、命がつながってきた家族です。
       </p>
     </div>
-
     <div class="section-title">😺 うちの猫たち</div>
     <div class="cats-grid">
-      <a href="cats.html#kiki" class="cat-card">
-        <div class="photo">🐱</div>
-        <div class="info"><div class="name">キキ</div><div class="breed">キジトラ・メス</div></div>
-      </a>
-      <a href="cats.html#mimi" class="cat-card">
-        <div class="photo">🐱</div>
-        <div class="info"><div class="name">ミミ</div><div class="breed">キジトラ・メス</div></div>
-      </a>
-      <a href="cats.html#sakura" class="cat-card">
-        <div class="photo">🐱</div>
-        <div class="info"><div class="name">さくら</div><div class="breed">茶白・オス</div></div>
-      </a>
-      <a href="cats.html#mii" class="cat-card">
-        <div class="photo">🐱</div>
-        <div class="info"><div class="name">ミー</div><div class="breed">三毛・メス</div></div>
-      </a>
-      <a href="cats.html#momo" class="cat-card">
-        <div class="photo">🐱</div>
-        <div class="info"><div class="name">モモ</div><div class="breed">キジトラ・オス</div></div>
-      </a>
-      <a href="cats.html#luna" class="cat-card">
-        <div class="photo">🐱</div>
-        <div class="info"><div class="name">ルナ</div><div class="breed">黒・メス</div></div>
-      </a>
-      <a href="cats.html#patty" class="cat-card">
-        <div class="photo">🐱</div>
-        <div class="info"><div class="name">パティー</div><div class="breed">キジトラ・メス</div></div>
-      </a>
-      <a href="cats.html#rinrin" class="cat-card">
-        <div class="photo">🐱</div>
-        <div class="info"><div class="name">リンリン</div><div class="breed">黒白・メス</div></div>
-      </a>
-      <a href="cats.html#ranran" class="cat-card">
-        <div class="photo">🐱</div>
-        <div class="info"><div class="name">ランラン</div><div class="breed">黒白・メス</div></div>
-      </a>
+      <a href="cats.html#kiki" class="cat-card"><div class="photo">🐱</div><div class="info"><div class="name">キキ</div><div class="breed">キジトラ・メス</div></div></a>
+      <a href="cats.html#mimi" class="cat-card"><div class="photo">🐱</div><div class="info"><div class="name">ミミ</div><div class="breed">キジトラ・メス</div></div></a>
+      <a href="cats.html#sakura" class="cat-card"><div class="photo">🐱</div><div class="info"><div class="name">さくら</div><div class="breed">茶白・オス</div></div></a>
+      <a href="cats.html#mii" class="cat-card"><div class="photo">🐱</div><div class="info"><div class="name">ミー</div><div class="breed">三毛・メス</div></div></a>
+      <a href="cats.html#momo" class="cat-card"><div class="photo">🐱</div><div class="info"><div class="name">モモ</div><div class="breed">キジトラ・オス</div></div></a>
+      <a href="cats.html#luna" class="cat-card"><div class="photo">🐱</div><div class="info"><div class="name">ルナ</div><div class="breed">黒・メス</div></div></a>
+      <a href="cats.html#patty" class="cat-card"><div class="photo">🐱</div><div class="info"><div class="name">パティー</div><div class="breed">キジトラ・メス</div></div></a>
+      <a href="cats.html#rinrin" class="cat-card"><div class="photo">🐱</div><div class="info"><div class="name">リンリン</div><div class="breed">黒白・メス</div></div></a>
+      <a href="cats.html#ranran" class="cat-card"><div class="photo">🐱</div><div class="info"><div class="name">ランラン</div><div class="breed">黒白・メス</div></div></a>
     </div>
   </main>
-
-  <footer>
-    <p>🐾 ねこのおうち &copy; 2026</p>
-  </footer>
-
+  <footer><p>🐾 ねこのおうち &copy; 2026</p></footer>
   <script>
     const items = document.querySelectorAll('.cat-card, .intro-card, .rescue-banner');
     const observer = new IntersectionObserver((entries) => {
@@ -309,6 +249,5 @@
       observer.observe(el);
     });
   </script>
-
 </body>
 </html>
