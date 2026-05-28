@@ -30,7 +30,6 @@
       pointer-events: none;
       z-index: 0;
     }
-
     nav {
       position: sticky;
       top: 0;
@@ -66,7 +65,6 @@
       color: var(--accent);
       border-bottom-color: var(--accent);
     }
-
     .hero {
       position: relative;
       z-index: 1;
@@ -91,7 +89,6 @@
       margin-bottom: 8px;
     }
     .hero p { color: var(--brown); font-size: 0.97rem; }
-
     main {
       position: relative;
       z-index: 1;
@@ -99,8 +96,6 @@
       margin: 0 auto;
       padding: 0 20px 80px;
     }
-
-    /* 各猫のカード */
     .cat-profile {
       background: white;
       border-radius: 20px;
@@ -119,7 +114,6 @@
     @media (max-width: 560px) {
       .cat-profile { grid-template-columns: 1fr; }
     }
-
     .cat-photo {
       background: var(--soft);
       display: flex;
@@ -129,41 +123,31 @@
       min-height: 180px;
       overflow: hidden;
     }
-    .cat-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .cat-info {
-      padding: 28px;
-    }
+    .cat-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .cat-info { padding: 24px 28px; }
     .cat-info h2 {
       font-family: 'Zen Kurenaido', sans-serif;
       font-size: 1.5rem;
       color: var(--accent);
-      margin-bottom: 4px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      margin-bottom: 6px;
     }
-    .cat-info .breed-tag {
+    .tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .tag {
       display: inline-block;
       background: var(--soft);
       color: var(--brown);
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       padding: 3px 10px;
       border-radius: 20px;
-      margin-bottom: 16px;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.04em;
     }
-    .profile-table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    .profile-table tr {
-      border-bottom: 1px solid var(--soft);
-    }
+    .profile-table { width: 100%; border-collapse: collapse; }
+    .profile-table tr { border-bottom: 1px solid var(--soft); }
     .profile-table tr:last-child { border-bottom: none; }
     .profile-table th {
       text-align: left;
@@ -171,7 +155,7 @@
       color: var(--brown);
       font-weight: normal;
       font-size: 0.82rem;
-      width: 90px;
+      width: 80px;
       letter-spacing: 0.04em;
     }
     .profile-table td {
@@ -180,11 +164,6 @@
       font-size: 0.9rem;
       line-height: 1.7;
     }
-    .placeholder {
-      color: #ccc;
-      font-style: italic;
-    }
-
     footer {
       position: relative;
       z-index: 1;
@@ -209,7 +188,7 @@
   <div class="hero">
     <span class="hero-icon">😸</span>
     <h1>うちの猫たち</h1>
-    <p>9匹の個性豊かな家族を紹介します。</p>
+    <p>9匹の保護猫、みんな大切な家族です。</p>
   </div>
 
   <main>
@@ -219,11 +198,14 @@
       <div class="cat-photo">🐱</div>
       <div class="cat-info">
         <h2>キキ</h2>
-        <span class="breed-tag">キジトラ</span>
+        <div class="tags">
+          <span class="tag">キジトラ</span>
+          <span class="tag">メス</span>
+          <span class="tag">保護猫</span>
+        </div>
         <table class="profile-table">
-          <tr><th>性格</th><td class="placeholder">（準備中）</td></tr>
-          <tr><th>好きなこと</th><td class="placeholder">（準備中）</td></tr>
-          <tr><th>ひとこと</th><td class="placeholder">（準備中）</td></tr>
+          <tr><th>性格</th><td>ボス</td></tr>
+          <tr><th>ひとこと</th><td>うちの主猫。片肺が機能していないため、激しく動くと呼吸が心配。</td></tr>
         </table>
       </div>
     </div>
@@ -233,11 +215,14 @@
       <div class="cat-photo">🐱</div>
       <div class="cat-info">
         <h2>ミミ</h2>
-        <span class="breed-tag">キジトラ</span>
+        <div class="tags">
+          <span class="tag">キジトラ</span>
+          <span class="tag">メス</span>
+          <span class="tag">保護猫</span>
+        </div>
         <table class="profile-table">
-          <tr><th>性格</th><td class="placeholder">（準備中）</td></tr>
-          <tr><th>好きなこと</th><td class="placeholder">（準備中）</td></tr>
-          <tr><th>ひとこと</th><td class="placeholder">（準備中）</td></tr>
+          <tr><th>性格</th><td>自分を人間だと思っている</td></tr>
+          <tr><th>ひとこと</th><td>生後数日で保護し、人間に育てられたため、超箱入り娘です。</td></tr>
         </table>
       </div>
     </div>
@@ -247,11 +232,14 @@
       <div class="cat-photo">🐱</div>
       <div class="cat-info">
         <h2>さくら</h2>
-        <span class="breed-tag">茶白</span>
+        <div class="tags">
+          <span class="tag">茶白</span>
+          <span class="tag">オス</span>
+          <span class="tag">保護猫</span>
+        </div>
         <table class="profile-table">
-          <tr><th>性格</th><td class="placeholder">（準備中）</td></tr>
-          <tr><th>好きなこと</th><td class="placeholder">（準備中）</td></tr>
-          <tr><th>ひとこと</th><td class="placeholder">（準備中）</td></tr>
+          <tr><th>性格</th><td>甘えん坊</td></tr>
+          <tr><th>ひとこと</th><td>よくしゃべる。何かしら要求があるとすぐに声に出す。返事も上手。</td></tr>
         </table>
       </div>
     </div>
@@ -261,11 +249,14 @@
       <div class="cat-photo">🐱</div>
       <div class="cat-info">
         <h2>ミー</h2>
-        <span class="breed-tag">三毛</span>
+        <div class="tags">
+          <span class="tag">三毛</span>
+          <span class="tag">メス</span>
+          <span class="tag">保護猫</span>
+        </div>
         <table class="profile-table">
-          <tr><th>性格</th><td class="placeholder">（準備中）</td></tr>
-          <tr><th>好きなこと</th><td class="placeholder">（準備中）</td></tr>
-          <tr><th>ひとこと</th><td class="placeholder">（準備中）</td></tr>
+          <tr><th>性格</th><td>全てのはじまり</td></tr>
+          <tr><th>ひとこと</th><td>さくら以外はミーちゃんからの血筋。いったい今何歳なのか…。</td></tr>
         </table>
       </div>
     </div>
@@ -275,11 +266,14 @@
       <div class="cat-photo">🐱</div>
       <div class="cat-info">
         <h2>モモ</h2>
-        <span class="breed-tag">キジトラ</span>
+        <div class="tags">
+          <span class="tag">キジトラ</span>
+          <span class="tag">オス</span>
+          <span class="tag">保護猫</span>
+        </div>
         <table class="profile-table">
-          <tr><th>性格</th><td class="placeholder">（準備中）</td></tr>
-          <tr><th>好きなこと</th><td class="placeholder">（準備中）</td></tr>
-          <tr><th>ひとこと</th><td class="placeholder">（準備中）</td></tr>
+          <tr><th>性格</th><td>ビビり</td></tr>
+          <tr><th>ひとこと</th><td>ルナのことが大好き。ルナがいないと犬みたいに鳴いてる。</td></tr>
         </table>
       </div>
     </div>
@@ -289,11 +283,14 @@
       <div class="cat-photo">🐱</div>
       <div class="cat-info">
         <h2>ルナ</h2>
-        <span class="breed-tag">黒</span>
+        <div class="tags">
+          <span class="tag">黒</span>
+          <span class="tag">メス</span>
+          <span class="tag">保護猫</span>
+        </div>
         <table class="profile-table">
-          <tr><th>性格</th><td class="placeholder">（準備中）</td></tr>
-          <tr><th>好きなこと</th><td class="placeholder">（準備中）</td></tr>
-          <tr><th>ひとこと</th><td class="placeholder">（準備中）</td></tr>
+          <tr><th>性格</th><td>マイペース</td></tr>
+          <tr><th>ひとこと</th><td>黒猫。真っ黒だから暗い部屋だとどこにいるか本当に見えない。</td></tr>
         </table>
       </div>
     </div>
@@ -303,11 +300,14 @@
       <div class="cat-photo">🐱</div>
       <div class="cat-info">
         <h2>パティー</h2>
-        <span class="breed-tag">キジトラ</span>
+        <div class="tags">
+          <span class="tag">キジトラ</span>
+          <span class="tag">メス</span>
+          <span class="tag">保護猫</span>
+        </div>
         <table class="profile-table">
-          <tr><th>性格</th><td class="placeholder">（準備中）</td></tr>
-          <tr><th>好きなこと</th><td class="placeholder">（準備中）</td></tr>
-          <tr><th>ひとこと</th><td class="placeholder">（準備中）</td></tr>
+          <tr><th>性格</th><td>人間にやさしく猫に厳しい</td></tr>
+          <tr><th>ひとこと</th><td>特にミミに厳しい。なぜかキキには従い、さくらは大好き。人間には何されても怒らない。</td></tr>
         </table>
       </div>
     </div>
@@ -317,11 +317,15 @@
       <div class="cat-photo">🐱</div>
       <div class="cat-info">
         <h2>リンリン</h2>
-        <span class="breed-tag">黒白</span>
+        <div class="tags">
+          <span class="tag">黒白</span>
+          <span class="tag">メス</span>
+          <span class="tag">保護猫</span>
+          <span class="tag">ランランの姉妹</span>
+        </div>
         <table class="profile-table">
-          <tr><th>性格</th><td class="placeholder">（準備中）</td></tr>
-          <tr><th>好きなこと</th><td class="placeholder">（準備中）</td></tr>
-          <tr><th>ひとこと</th><td class="placeholder">（準備中）</td></tr>
+          <tr><th>性格</th><td>臆病</td></tr>
+          <tr><th>ひとこと</th><td>美形なお顔。リンリンとランランは姉妹。</td></tr>
         </table>
       </div>
     </div>
@@ -331,11 +335,15 @@
       <div class="cat-photo">🐱</div>
       <div class="cat-info">
         <h2>ランラン</h2>
-        <span class="breed-tag">黒白</span>
+        <div class="tags">
+          <span class="tag">黒白</span>
+          <span class="tag">メス</span>
+          <span class="tag">保護猫</span>
+          <span class="tag">リンリンの姉妹</span>
+        </div>
         <table class="profile-table">
-          <tr><th>性格</th><td class="placeholder">（準備中）</td></tr>
-          <tr><th>好きなこと</th><td class="placeholder">（準備中）</td></tr>
-          <tr><th>ひとこと</th><td class="placeholder">（準備中）</td></tr>
+          <tr><th>性格</th><td>オーバーリアクション</td></tr>
+          <tr><th>ひとこと</th><td>ちょろんちょちょろんちょしてる。</td></tr>
         </table>
       </div>
     </div>
