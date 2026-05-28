@@ -44,12 +44,14 @@
       flex-wrap: wrap;
     }
     nav .logo {
-      font-family: 'Zen Kurenaido', sans-serif;
-      font-size: 1.3rem;
-      color: var(--accent);
-      text-decoration: none;
-      letter-spacing: 0.05em;
-      margin-right: auto;
+  font-family: 'Zen Kurenaido', sans-serif;
+  font-size: 1.5rem;
+  color: var(--accent);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  margin-right: auto;
+  flex-shrink: 0;
+}
     }
     nav a:not(.logo) {
       color: var(--brown);
@@ -179,7 +181,7 @@
 <body>
 
   <nav>
-    <a href="index.html" class="logo">🐾 ねこのおうち</a>
+    <a href="index.html" class="logo">🐾</a>
     <a href="index.html">トップ</a>
     <a href="cats.html" class="active">うちの猫たち</a>
     <a href="contact.html">お問い合わせ</a>
