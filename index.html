@@ -31,18 +31,19 @@
       z-index: 0;
     }
     nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(253,246,236,0.95);
-      backdrop-filter: blur(8px);
-      border-bottom: 2px solid var(--soft);
-      padding: 14px 24px;
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      flex-wrap: wrap;
-    }
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(253,246,236,0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 2px solid var(--soft);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
     nav .logo {
       font-family: 'Zen Kurenaido', sans-serif;
       font-size: 1.3rem;
@@ -106,12 +107,12 @@
       text-align: center;
     }
     .cat-count {
-      font-family: 'Zen Kurenaido', sans-serif;
-      font-size: 1.8rem;
-      color: var(--accent);
-      display: block;
-      margin-bottom: 12px;
-    }
+  font-family: 'Zen Kurenaido', sans-serif;
+  font-size: clamp(1.1rem, 4vw, 1.8rem);
+  color: var(--accent);
+  display: block;
+  margin-bottom: 12px;
+}
     .intro-card p {
       line-height: 2;
       color: var(--brown);
